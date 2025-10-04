@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+cp "$HOME/Desktop/dotfiles/bin/templates/template.cpp" "$1.cpp"
+
