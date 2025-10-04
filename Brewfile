@@ -1,3 +1,4 @@
+brew "ack"
 brew "readline"
 brew "direnv"
 brew "openssl@3"
