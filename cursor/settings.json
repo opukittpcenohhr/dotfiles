@@ -54,7 +54,8 @@
     },
     "workbench.editorAssociations": {
         "*.md": "vscode.markdown.preview.editor",
-        "*.pkl": "default"
+        "*.pkl": "default",
+        "*.pdf": "latex-workshop-pdf-hook"
     },
     "explorer.confirmDelete": false,
     "cursor.cpp.disabledLanguages": [
