@@ -8,6 +8,7 @@
         "*.pdf": "latex-workshop-pdf-hook"
     },
     "explorer.confirmDelete": false,
+    "chat.disableAIFeatures": true,
     // C & C++
     "[c][cpp]": {
         "editor.defaultFormatter": "xaver.clang-format",
@@ -56,5 +57,4 @@
     "black-formatter.path": [
         "/Users/dmitriiumnov/.local/bin/black"
     ],
-    "chat.disableAIFeatures": true,
 }
