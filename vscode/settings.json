@@ -1,0 +1,60 @@
+{
+    // Common
+    "workbench.colorTheme": "Dark Modern",
+    "editor.formatOnSave": true,
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor",
+        "*.pkl": "default",
+        "*.pdf": "latex-workshop-pdf-hook"
+    },
+    "explorer.confirmDelete": false,
+    // C & C++
+    "[c][cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format",
+        "editor.tabSize": 2
+    },
+    // LATEX
+    "[latex]": {
+        "editor.wordWrap": "on",
+        "editor.defaultFormatter": "James-Yu.latex-workshop"
+    },
+    "latex-workshop.formatting.latex": "latexindent",
+    "latex-workshop.latex.autoClean.run": "onSucceeded",
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.ist",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.synctex.gz"
+    ],
+    // Python
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "jupyter.askForKernelRestart": false,
+    "python.analysis.typeCheckingMode": "basic",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+    },
+    "black-formatter.path": [
+        "/Users/dmitriiumnov/.local/bin/black"
+    ],
+    "chat.disableAIFeatures": true,
+}
