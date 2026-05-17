@@ -116,3 +116,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export PATH="$HOME/Desktop/dotfiles/bin:$PATH"
+
+_gtr_init="${XDG_CACHE_HOME:-$HOME/.cache}/gtr/init-gtr.zsh"
+[[ -f "$_gtr_init" ]] || eval "$(git gtr init zsh)" || true
+source "$_gtr_init" 2>/dev/null || true; unset _gtr_init

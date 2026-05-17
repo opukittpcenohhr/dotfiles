@@ -2,4 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
 name = Dmitrii Umnov
-email = umnovdimitry@icloud.com 
+email = umnovdimitry@icloud.com
+
+[gtr "ai"]
+    default = claude
