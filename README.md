@@ -76,3 +76,9 @@ exec zsh
 
 - **Python:** managed with `uv` (installed via the Brewfile). It fetches and
   pins Python versions per project, so there's nothing extra to set up.
+
+- **iTerm2:** settings live in `iterm2/`. On a new machine, open iTerm2 →
+  Settings → General → Preferences, check "Load preferences from a custom
+  folder or URL", point it at this repo's `iterm2/` folder, and set "Save
+  changes" to *Automatically*. iTerm2 reads/writes the plist there itself, so
+  it isn't symlinked by `link.sh`.
