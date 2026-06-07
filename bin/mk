@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-cp "$HOME/Desktop/dotfiles/bin/templates/template.cpp" "$1.cpp"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cp "$DIR/templates/template.cpp" "$1.cpp"
 

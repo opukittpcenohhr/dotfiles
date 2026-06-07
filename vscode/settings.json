@@ -55,6 +55,6 @@
         "editor.tabSize": 4,
     },
     "black-formatter.path": [
-        "/Users/dmitriiumnov/.local/bin/black"
+        "${userHome}/.local/bin/black"
     ],
 }
