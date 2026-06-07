@@ -21,6 +21,7 @@ link() {
 
 echo "Linking dotfiles from $REPO"
 link "$REPO/zshrc"                "$HOME/.zshrc"
+link "$REPO/zprofile"             "$HOME/.zprofile"
 link "$REPO/gitconfig"            "$HOME/.gitconfig"
 link "$REPO/latexmkrc"            "$HOME/.latexmkrc"
 link "$REPO/claude/settings.json" "$HOME/.claude/settings.json"

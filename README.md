@@ -42,7 +42,7 @@ Then load it into the current shell (Apple Silicon):
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-(`~/.zprofile` does this automatically in future shells.)
+(Step 6 links `~/.zprofile`, which runs this automatically in future shells.)
 
 ### 4. Install packages
 
