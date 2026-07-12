@@ -3,6 +3,7 @@
     "defaultMode": "bypassPermissions"
   },
   "model": "opus",
+  "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "skipDangerousModePermissionPrompt": true
+  "tui": "fullscreen"
 }
