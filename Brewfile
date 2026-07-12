@@ -4,6 +4,8 @@ tap "coderabbitai/tap"
 brew "ack"
 # Incredibly fast JavaScript runtime, bundler, test runner, and package manager
 brew "bun"
+# CLI tool for analyzing Claude Code usage from local JSONL files
+brew "ccusage"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # TIFF library and utilities
