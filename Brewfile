@@ -20,6 +20,8 @@ brew "ffmpeg"
 brew "htop"
 # Add indentation to LaTeX files
 brew "latexindent"
+# NCurses Disk Usage
+brew "ncdu"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Tools for and transforming and inspecting PDF files
