@@ -4,7 +4,5 @@
 name = Dmitrii Umnov
 email = umnovdimitry@icloud.com
 
-[gtr "ai"]
-    default = claude
 [pull]
 	ff = only
