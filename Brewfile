@@ -43,8 +43,6 @@ cask "amneziavpn"
 cask "anthropics/tap/ant", trusted: true
 # Chromium based browser
 cask "arc"
-# Anthropic's official Claude AI desktop app
-cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
 # Voice and text chat software
