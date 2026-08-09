@@ -1,4 +1,3 @@
-tap "anthropics/tap"
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Incredibly fast JavaScript runtime, bundler, test runner, and package manager
