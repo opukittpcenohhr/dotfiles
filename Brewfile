@@ -15,6 +15,8 @@ brew "readline"
 brew "openssl@3"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# GitHub command-line tool
+brew "gh"
 # Improved top (interactive process viewer)
 brew "htop"
 # Add indentation to LaTeX files
