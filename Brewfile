@@ -39,8 +39,6 @@ brew "yt-dlp"
 brew "zlib"
 # VPN client
 cask "amneziavpn"
-# CLI for the Claude Platform
-cask "anthropics/tap/ant", trusted: true
 # Chromium based browser
 cask "arc"
 # Terminal-based AI coding assistant
