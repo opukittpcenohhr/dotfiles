@@ -57,4 +57,10 @@
     "black-formatter.path": [
         "${userHome}/.local/bin/black"
     ],
+    // Rust
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer"
+    },
+    "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.cargo.targetDir": true,
 }

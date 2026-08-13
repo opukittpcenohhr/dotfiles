@@ -57,7 +57,13 @@ brew bundle
 
 Follow the current instructions at <https://ohmyz.sh>.
 
-### 6. Link the dotfiles
+### 6. Install Rust
+
+Not in the `Brewfile`: toolchains are managed by `rustup`, which Homebrew
+shouldn't own. Follow the current instructions at <https://rustup.rs>, adding
+`--no-modify-path` — `zshenv` already puts `~/.cargo/bin` on PATH.
+
+### 7. Link the dotfiles
 
 Creates all symlinks. Any existing real file is backed up to `<file>.bak`
 first. Safe to re-run.
@@ -66,7 +72,7 @@ first. Safe to re-run.
 ./link.sh
 ```
 
-### 7. Restart your shell
+### 8. Restart your shell
 
 ```sh
 exec zsh
@@ -76,6 +82,8 @@ exec zsh
 
 - **Python:** managed with `uv` (installed via the Brewfile). It fetches and
   pins Python versions per project, so there's nothing extra to set up.
+
+- **Rust:** managed with `rustup`, not Homebrew. Update with `rustup update`.
 
 - **iTerm2:** settings live in `iterm2/`. On a new machine, open iTerm2 →
   Settings → General → Preferences, check "Load preferences from a custom
