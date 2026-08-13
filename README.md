@@ -42,26 +42,30 @@ Then load it into the current shell (Apple Silicon):
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-(Step 6 links `~/.zprofile`, which runs this automatically in future shells.)
+(Step 7 links `~/.zprofile`, which runs this automatically in future shells.)
 
-### 4. Install packages
+### 4. Install Rust
 
-Installs everything in the `Brewfile`: CLI tools, casks (apps), VS Code
-extensions, and `uv` tools.
+Follow the current instructions at <https://rustup.rs>, adding
+`--no-modify-path` — `zshenv` already puts `~/.cargo/bin` on PATH.
+
+### 5. Install packages
+
+Installs everything in the `Brewfile`: CLI tools, casks (apps), etc.
 
 ```sh
+source "$HOME/.cargo/env"  # this shell only; step 7 links zshenv, which puts it on PATH for good
 brew bundle
 ```
 
-### 5. Install oh-my-zsh
+> The `Brewfile` has `cargo` entries, so `cargo` must be on PATH here — hence
+> the `source` line, since step 4 used `--no-modify-path`. Without it `brew
+> bundle` installs Homebrew's `rust` formula, which then shadows `rustup`'s
+> toolchain on PATH.
+
+### 6. Install oh-my-zsh
 
 Follow the current instructions at <https://ohmyz.sh>.
-
-### 6. Install Rust
-
-Not in the `Brewfile`: toolchains are managed by `rustup`, which Homebrew
-shouldn't own. Follow the current instructions at <https://rustup.rs>, adding
-`--no-modify-path` — `zshenv` already puts `~/.cargo/bin` on PATH.
 
 ### 7. Link the dotfiles
 
@@ -72,27 +76,59 @@ first. Safe to re-run.
 ./link.sh
 ```
 
-### 8. Restart your shell
+### 8. Point iTerm2 at this repo
+
+iTerm2 keeps its own plist and can't be symlinked by `link.sh` — it reads and
+writes the file itself. Instead, open iTerm2 → Settings → General →
+Preferences, check "Load preferences from a custom folder or URL", point it at
+this repo's `iterm2/` folder, and set "Save changes" to *Automatically*.
+
+### 9. Restart your shell
 
 ```sh
 exec zsh
 ```
 
+## Installed directly
+
+The things installed on the machine by hand, outside of anything else.
+Everything not listed here is managed by one of them (e.g. `uv` and VS Code
+extensions are managed by Homebrew).
+
+**Xcode Command Line Tools**
+- *Owns:* `git`, `clang`/`g++`, and the macOS SDK everything else builds against
+- *Update:* through macOS software updates
+
+**Homebrew**
+- *Owns:* CLI tools, casks (apps), VS Code extensions, `uv` tools, `cargo` binaries
+- *Brewfile:* generated, not hand-edited — see "Keeping the repo in sync"
+- *Update:* `brew update && brew bundle upgrade` from the repo root — unlike
+  `brew upgrade`, it also covers the `vscode`, `uv` and `cargo` entries
+
+**rustup**
+- *Owns:* Rust toolchains (`rustc`, `cargo`)
+- *Why not Homebrew:* `rustup` is the officially recommended way to install
+  Rust (<https://rustup.rs>)
+- *Update:* `rustup update`
+
+**oh-my-zsh**
+- *Owns:* the zsh framework and its plugins
+- *Update:* `omz update`
+
+## Keeping the repo in sync
+
+Configs stay in sync on their own — edits land here as a diff to commit. The
+exceptions:
+
+- **Installed packages.** The `Brewfile` is a snapshot; re-take it with
+  `brew bundle dump --force` from the repo root after changing anything.
+
+- **New config files.** Add a `link` line to `link.sh` and re-run it.
+
 ## Notes
-
-- **Python:** managed with `uv` (installed via the Brewfile). It fetches and
-  pins Python versions per project, so there's nothing extra to set up.
-
-- **Rust:** managed with `rustup`, not Homebrew. Update with `rustup update`.
 
 - **VS Code settings:** `vscode/settings.json` holds personal defaults, not a
   safe common denominator — format-on-save is on globally, with a formatter
   pinned per language. A project needing anything different overrides it in its
   own committed `.vscode/settings.json`, which beats user settings — for
   example, disabling `latexindent` on a shared paper.
-
-- **iTerm2:** settings live in `iterm2/`. On a new machine, open iTerm2 →
-  Settings → General → Preferences, check "Load preferences from a custom
-  folder or URL", point it at this repo's `iterm2/` folder, and set "Save
-  changes" to *Automatically*. iTerm2 reads/writes the plist there itself, so
-  it isn't symlinked by `link.sh`.
