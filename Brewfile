@@ -4,6 +4,8 @@ brew "ack"
 brew "bun"
 # CLI tool for analyzing Claude Code usage from local JSONL files
 brew "ccusage"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # TIFF library and utilities
