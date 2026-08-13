@@ -45,22 +45,18 @@
         "*.synctex.gz"
     ],
     // Python
-    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
     "jupyter.askForKernelRestart": false,
     "python.analysis.typeCheckingMode": "basic",
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter",
-        "editor.detectIndentation": false,
         "editor.insertSpaces": true,
-        "editor.tabSize": 4,
+        "editor.tabSize": 4
     },
-    "black-formatter.path": [
-        "${userHome}/.local/bin/black"
-    ],
+    "black-formatter.importStrategy": "fromEnvironment",
     // Rust
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
     "rust-analyzer.check.command": "clippy",
-    "rust-analyzer.cargo.targetDir": true,
+    "rust-analyzer.cargo.targetDir": true
 }

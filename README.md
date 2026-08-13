@@ -85,6 +85,12 @@ exec zsh
 
 - **Rust:** managed with `rustup`, not Homebrew. Update with `rustup update`.
 
+- **VS Code settings:** `vscode/settings.json` holds personal defaults, not a
+  safe common denominator — format-on-save is on globally, with a formatter
+  pinned per language. A project needing anything different overrides it in its
+  own committed `.vscode/settings.json`, which beats user settings — for
+  example, disabling `latexindent` on a shared paper.
+
 - **iTerm2:** settings live in `iterm2/`. On a new machine, open iTerm2 →
   Settings → General → Preferences, check "Load preferences from a custom
   folder or URL", point it at this repo's `iterm2/` folder, and set "Save
