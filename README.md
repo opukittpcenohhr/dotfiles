@@ -127,6 +127,11 @@ exceptions:
 
 ## Notes
 
+- **Codex settings:** `~/.codex/config.toml` is intentionally kept local and
+  not symlinked into this repo. Codex stores machine-specific absolute project
+  paths there for trust decisions alongside portable preferences, so tracking
+  the whole file would make the dotfiles machine-dependent.
+
 - **VS Code settings:** `vscode/settings.json` holds personal defaults, not a
   safe common denominator — format-on-save is on globally, with a formatter
   pinned per language. A project needing anything different overrides it in its
