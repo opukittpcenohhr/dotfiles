@@ -3,6 +3,8 @@
 Personal macOS setup. Configs live in this repo; `~/.zshrc`, `~/.gitconfig`,
 VS Code settings, etc. are symlinks pointing back here.
 
+> **NB:** This setup supports Apple Silicon Macs only.
+
 ## Setting up a new machine
 
 Run these once, in order.
@@ -69,8 +71,10 @@ Follow the current instructions at <https://ohmyz.sh>.
 
 ### 7. Link the dotfiles
 
-Creates all symlinks. Any existing real file is backed up to `<file>.bak`
-first. Safe to re-run.
+Creates all symlinks. Before replacing an existing file or directory, the
+script moves it to a timestamped backup such as
+`<file>.bak.20260904-143052`. If that name already exists, it appends `.1`,
+`.2`, etc. Safe to re-run.
 
 ```sh
 ./link.sh

@@ -1,19 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Create all dotfile symlinks. Safe to re-run; existing real files are
-# backed up to <file>.bak before linking. Run this after cloning the repo
-# (see README.md). Works no matter where the repo is cloned.
+# Create all dotfile symlinks. Safe to re-run; existing non-symlinks are
+# backed up before linking. Run this after cloning the repo (see README.md).
+# Works no matter where the repo is cloned.
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Link $1 (in repo) to $2 (destination), backing up any existing real file.
+# Link $1 (in repo) to $2 (destination), backing up any existing non-symlink.
 link() {
   local src="$1" dst="$2"
+  local backup suffix timestamp
   mkdir -p "$(dirname "$dst")"
   if [ -e "$dst" ] && [ ! -L "$dst" ]; then
-    echo "  backing up $dst -> $dst.bak"
-    mv "$dst" "$dst.bak"
+    timestamp="$(date '+%Y%m%d-%H%M%S')"
+    backup="$dst.bak.$timestamp"
+    suffix=1
+    while [ -e "$backup" ] || [ -L "$backup" ]; do
+      backup="$dst.bak.$timestamp.$suffix"
+      suffix=$((suffix + 1))
+    done
+    echo "  backing up $dst -> $backup"
+    mv "$dst" "$backup"
   fi
   ln -sfn "$src" "$dst"
   echo "  linked $dst"
