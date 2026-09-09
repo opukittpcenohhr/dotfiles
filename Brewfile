@@ -58,6 +58,8 @@ cask "ledger-wallet"
 cask "mactex"
 # Open-source software for live streaming and screen recording
 cask "obs"
+# Screen time app
+cask "opal-app"
 # Email client
 cask "readdle-spark"
 # Video game digital distribution service
