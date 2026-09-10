@@ -38,8 +38,6 @@ brew "uv"
 brew "yt-dlp"
 # General-purpose lossless data-compression library
 brew "zlib"
-# VPN client
-cask "amneziavpn"
 # Chromium based browser
 cask "arc"
 # Terminal-based AI coding assistant
