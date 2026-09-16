@@ -22,8 +22,12 @@ brew "gh"
 brew "htop"
 # Add indentation to LaTeX files
 brew "latexindent"
+# Sudoless performance monitoring for Apple Silicon processors
+brew "macmon"
 # NCurses Disk Usage
 brew "ncdu"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Tools for and transforming and inspecting PDF files
@@ -89,3 +93,4 @@ vscode "xaver.clang-format"
 cargo "cargo-modules"
 cargo "workshop-runner"
 uv "black"
+uv "whisperx"
