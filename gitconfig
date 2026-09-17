@@ -6,3 +6,5 @@ email = dmitrii@umnov.me
 
 [pull]
 	ff = only
+[push]
+	autoSetupRemote = true
