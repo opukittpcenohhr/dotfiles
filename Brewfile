@@ -13,7 +13,7 @@ brew "libtiff"
 # Library for command-line editing
 brew "readline"
 # Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
+brew "openssl@3", link: true
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # GitHub command-line tool
