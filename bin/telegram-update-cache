@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Keep Telegram's built-in updater from accumulating downloaded packages.
+# Update Telegram through Homebrew while this workaround is enabled.
+usage() {
+  echo "Usage: $(basename "$0") <block|unblock|clear|state>"
+  echo "Quit Telegram before block, unblock, or clear. State is read-only."
+  echo "Only clear deletes downloads; it preserves the folder's lock state."
+}
+
+if [[ $# -ne 1 ]]; then
+  usage >&2
+  exit 1
+fi
+action="$1"
+case "$action" in
+  block|unblock|clear|state) ;;
+  -h|--help) usage; exit 0 ;;
+  *) usage >&2; exit 1 ;;
+esac
+
+if [[ "$(uname -s)" != Darwin ]]; then
+  echo "This script requires macOS." >&2
+  exit 1
+fi
+
+cache="$HOME/Library/Caches/ru.keepcoder.Telegram/org.sparkle-project.Sparkle/PersistentDownloads"
+if [[ -L "$cache" || ( -e "$cache" && ! -d "$cache" ) ]]; then
+  echo "Expected a directory, not a file or symlink: $cache" >&2
+  exit 1
+fi
+
+cache_state() {
+  local flags
+  if [[ ! -d "$cache" ]]; then
+    echo "missing"
+    return
+  fi
+  flags="$(stat -f '%Sf' "$cache")"
+  if [[ "$flags" == *uchg* || "$flags" == *schg* ]]; then
+    echo "blocked"
+  elif [[ ! -w "$cache" ]]; then
+    echo "read-only"
+  else
+    echo "unblocked"
+  fi
+}
+
+if [[ "$action" == state ]]; then
+  current_state="$(cache_state)"
+  echo "Telegram updater cache state: $current_state"
+  echo "Path: $cache"
+  exit 0
+fi
+
+if pgrep -x Telegram >/dev/null; then
+  echo "Quit Telegram with Cmd-Q, then run this script again." >&2
+  exit 1
+else
+  process_status=$?
+  if [[ $process_status -ne 1 ]]; then
+    echo "Could not check whether Telegram is running; no changes made." >&2
+    exit 1
+  fi
+fi
+
+if [[ "$action" == clear ]]; then
+  previous_state="$(cache_state)"
+  echo "Cache state before clear: $previous_state"
+  if [[ -d "$cache" ]]; then
+    original_mode="$(stat -f '%Lp' "$cache")"
+    original_flags="$(stat -f '%Sf' "$cache")"
+    restore_cache() {
+      chmod "$original_mode" "$cache"
+      if [[ "$original_flags" == *uchg* ]]; then
+        chflags uchg "$cache"
+      fi
+    }
+    trap restore_cache EXIT
+    chflags nouchg "$cache"
+    chmod u+rwx "$cache"
+    find "$cache" -mindepth 1 -maxdepth 1 -exec rm -rf -- {} +
+    restore_cache
+    trap - EXIT
+  fi
+  current_state="$(cache_state)"
+  if [[ "$current_state" != "$previous_state" ]]; then
+    echo "Cache state changed unexpectedly: $previous_state -> $current_state" >&2
+    exit 1
+  fi
+  echo "Telegram updater downloads cleared. State preserved: $current_state"
+  exit 0
+fi
+
+if [[ "$action" == unblock ]]; then
+  if [[ -d "$cache" ]]; then
+    chflags nouchg "$cache"
+    chmod 700 "$cache"
+  fi
+  echo "Telegram updater cache unblocked."
+  exit 0
+fi
+
+if [[ -d "$cache" ]]; then
+  existing="$(find "$cache" -mindepth 1 -maxdepth 1 -print -quit)"
+  if [[ -n "$existing" ]]; then
+    echo "Clear the existing update downloads first: $(basename "$0") clear" >&2
+    exit 1
+  fi
+fi
+
+mkdir -p "$cache"
+chflags nouchg "$cache"
+chmod 500 "$cache"
+chflags uchg "$cache"
+echo "Telegram updater cache blocked: $cache"
+echo "Update with: brew upgrade --cask telegram"

@@ -93,6 +93,18 @@ this repo's `iterm2/` folder, and set "Save changes" to *Automatically*.
 exec zsh
 ```
 
+### 10. Block Telegram's updater cache
+
+**Problem:** Telegram's built-in updater can repeatedly download the same
+update and fill the disk ([upstream issue](https://github.com/overtake/TelegramSwift/issues/206)).
+
+**Solution:** Lock Telegram's updater cache folder to prevent downloaded
+updates from accumulating:
+
+```sh
+./bin/telegram-update-cache block
+```
+
 ## Installed directly
 
 The things installed on the machine by hand, outside of anything else.
